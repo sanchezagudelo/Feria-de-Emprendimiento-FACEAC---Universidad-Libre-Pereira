@@ -12,7 +12,7 @@ const PROGRAMACION = [
   {time:"15:00", title:"Impulsando Valor Con Sistemas De Calidad", entity:"SENA", type:"Charla", place:"Auditorio Benjamín Herrera"},
   {time:"16:15", title:"Fondo Emprender", entity:"SENA", type:"Charla", place:"Auditorio Benjamín Herrera"},
   {time:"16:55", title:"Liderazgo y Bienestar — Cuidarse", speaker:"Daniel Zapata", type:"Charla", place:"Auditorio Benjamín Herrera"},
-  {time:"17:40", title:"xxxxx", speaker:"Ronald Zapata Aguirre", type:"Conversatorio", place:"Auditorio Benjamín Herrera"},
+  {time:"17:00", title:"Crédito Estratégico: Financia tu Futuro", speaker:"Fondo de Garantías del Café - Valentina Ariza", type:"Conversatorio", place:"Auditorio Benjamín Herrera"},
   {time:"19:00", title:"Reto Empresarial", entity:"Equipo Impulsa FACEAC", type:"Reto", place:"Auditorio Benjamín Herrera"}
 ];
 
@@ -25,7 +25,7 @@ const EMPRENDIMIENTOS = [
   {emprendedor:"Harrison Ramirez Cuartas", nombre:"Marce Cuartas Joyeria Artesanal", sector:"Moda", contacto:"3147923092", logo: "logos/marcecuartasjoyeria.jpg"},
   {emprendedor:"Natalia Vélez Taba", nombre:"Seduxxion", sector:"Moda", contacto:"3145647404", logo:"logos/seduxxion.png.jpg"},
   {emprendedor:"Jennifer Paola Jiménez Restrepo", nombre:"Ls Magnolia Accesorios", sector:"Moda", contacto:"3206900638", logo: "logos/lamagnolia.jpg"},
-  {emprendedor:"Felipe Sanchez Cuervo", nombre:"Felipe y Sus Dulces", sector:"Alimentación", contacto:"3219964634", logo: "logos/felipeysusdulces.jpg"},
+  {emprendedor:"Felipe Sanchez Cuervo", nombre:"Felipe y Sus Dulces", sector:"Alimentación", contacto:"3142162790", logo: "logos/felipeysusdulces.jpg"},
   {emprendedor:"Valentina Maya Vasquez", nombre:"Solaris Accesorios", sector:"Moda", contacto:"3203513315", logo: "logos/solaris.png"},
   {emprendedor:"Juan Sebastian Garces Maldonado", nombre:"Heaven Cocktails", sector:"Alimentación", contacto:"3108368192", logo: "logos/heaven.png"},
   {emprendedor:"Isabella Arango Jordan", nombre:"Gemini Lingerie", sector:"Moda", contacto:"3105365218", logo: "logos/gemini.png"},
@@ -36,7 +36,7 @@ const EMPRENDIMIENTOS = [
   {emprendedor:"Nicolás Henao Dávila", nombre:"Ofero Eje Cafetero", sector:"Tecnología", contacto:"3117534435", logo:"logos/ofero.png"},
   {emprendedor:"Sara Kallewaard mejia", nombre:"Savaroom", sector:"Moda", contacto:"3218828343", logo:"logos/savaroom.png.png"},
   {emprendedor:"Daniel Yamid Cardona Mejía", nombre:"Yami Salchipapa", sector:"Alimentación", contacto:"3127078598", logo: "logos/yamisalchipapas.jpg"},
-  {emprendedor:"Ana Maria Arteaga", nombre:"Ámbar Accesorios", sector:"Moda", contacto:"3167046984"},
+  {emprendedor:"Ana Maria Arteaga", nombre:"Ámbar Accesorios", sector:"Moda", contacto:"3167046984", logo: "logos/ambar.png"},
   {emprendedor:"Ana Maria Rincón", nombre:"Toque de Dulzura", sector:"Alimentación", contacto:"3024141206", logo: "logos/cookiss.jpg"}
 ];
 
