@@ -120,10 +120,24 @@ nav a.cta{background:var(--red);color:#fff}
    Cards / Utilities
    ========================= */
 .card{
-  background:#fff;border:1px solid var(--line);
-  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
-  overflow:auto;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:var(--shadow);
+
+  /* Evitar barras internas */
+  overflow:hidden;
 }
+
+/* Evitar scroll lateral por textos/URLs largos dentro de tarjetas */
+.card p,
+.card li,
+.card a{
+  word-break:break-word;
+  overflow-wrap:anywhere;
+}
+
 .grid{display:grid;gap:16px}
 .grid.cols-3{grid-template-columns:repeat(3,1fr)}
 .grid.cols-2{grid-template-columns:repeat(2,1fr)}
