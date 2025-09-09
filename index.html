@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feria de Emprendimiento — Impulsa FACEAC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <!-- Logo izquierdo -->
+        <img src="logo.png" alt="Logo Impulsa FACEAC" class="logo-feria" onerror="this.style.display='none'">
+        <!-- Título centrado con impacto -->
+        <h1>
+          <span class="impulsa">Impulsa</span> <span class="faceac">FACEAC</span>
+        </h1>
+        <!-- Logo derecho -->
+        <img src="logo-universidad.png" alt="Logo Universidad Libre" class="logo-uni" onerror="this.style.display='none'">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#programacion">Programación</a></li>
+          <li><a href="#emprendimientos">Emprendimientos</a></li>
+          <li><a href="#mapa">Mapa</a></li>
+          <li><a href="#graficos">Gráficos</a></li>
+          <li><a class="cta" href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO actualizado -->
+  <section id="inicio" class="hero">
+    <div class="container hero-grid">
+      <!-- Logo arriba -->
+      <div class="logo-wrap">
+        <img class="logo" src="logo.png" alt="Impulsa FACEAC" onerror="this.style.display='none'">
+      </div>
+
+      <!-- Título centrado con más presencia -->
+      <div class="hero-copy">
+        <h2 class="hero-title">
+          Feria de Emprendimiento<br>
+          <span class="hero-title-accent">IMPULSA FACEAC</span>
+        </h2>
+        <p class="hero-text">
+          ¡Bienvenido/a a la Feria de Emprendimiento IMPULSA FACEAC de la Universidad Libre Pereira! Donde las ideas se transforman en proyectos reales, la creatividad se encuentra con la acción, y cada estudiante construye su futuro con innovación, pasión y oportunidades reales.
+        </p>
+      </div>
+
+      <!-- Stats paralelos -->
+      <div class="stats">
+        <div class="stat">
+          <div class="num" id="statEmps">—</div>
+          <div class="muted">Emprendimientos</div>
+        </div>
+        <div class="stat">
+          <div class="num" id="statActs">—</div>
+          <div class="muted">Actividades</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /HERO -->
+
+  <section id="programacion" class="container">
+    <h2>Programación</h2>
+    <div class="card">
+      <!-- Grid de “slots” de hora -->
+      <div class="grid slots" id="scheduleGrid"></div>
+    </div>
+  </section>
+
+  <section id="emprendimientos" class="container">
+    <h2>Emprendimientos Inscritos</h2>
+    <div class="grid tiles" id="ventureGrid"></div>
+  </section>
+  <!--
+ <section id="mapa" class="container">
+    <h2>Mapa de la feria</h2>
+    <div class="card">
+      <img src="mapa-feria.png" alt="Mapa de la feria" style="max-width:100%; border-radius:12px;">
+    </div>
+  </section>
+  -->
+
+  <section id="graficos" class="container">
+    <h2>Gráficos y Datos</h2>
+    <div class="grid cols-2">
+      <div class="card placeholder">Gráfico: Emprendimientos por sector</div>
+      <div class="card placeholder">Gráfico: Canales de contacto más usados</div>
+    </div>
+  </section>
+
+  <section id="contacto" class="container">
+    <h2>Contacto de la organización</h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Escríbenos</h3>
+        <ul>
+          <li><strong>Instagram:</strong> <a href="https://instagram.com/impulsafaceac">@impulsafaceac</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Ubicación</h3>
+        <p>Universidad Libre #28 #96-102, Pereira, Risaralda</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot-flex">
+      <div>
+        <p><strong>Impulsa FACEAC</strong> — Feria de Emprendimiento</p>
+        <p>Universidad Libre — Sede Pereira</p>
+      </div>
+      <div>
+        <img src="logo-universidad.png" alt="Logo Universidad Libre" class="logo-footer" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal de detalle de emprendimiento -->
+  <div id="ventureModal" class="modal" aria-hidden="true">
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="vmTitle">
+      <button class="modal__close" id="vmClose" aria-label="Cerrar">✕</button>
+      <div class="modal__header">
+        <img id="vmLogo" alt="" class="modal__logo">
+        <h3 id="vmTitle"></h3>
+      </div>
+      <div class="modal__body">
+        <p class="muted"><strong>Sector:</strong> <span id="vmSector"></span></p>
+        <p class="muted"><strong>Emprendedor(a):</strong> <span id="vmOwner"></span></p>
+        <p class="muted"><strong>Contacto:</strong> <a id="vmWhats" target="_blank" rel="noopener"></a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de detalle de programación -->
+  <div id="scheduleModal" class="modal" aria-hidden="true">
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="smTitle">
+      <button class="modal__close" id="smClose" aria-label="Cerrar">✕</button>
+      <div class="modal__header">
+        <h3 id="smTitle"></h3>
+      </div>
+      <div class="modal__body">
+        <p class="muted"><strong>Hora:</strong> <span id="smTime"></span></p>
+        <p class="muted"><strong>Tipo:</strong> <span id="smType"></span></p>
+        <p class="muted"><strong>Ponente / Entidad:</strong> <span id="smSpeaker"></span></p>
+        <p class="muted"><strong>Lugar:</strong> <span id="smPlace"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

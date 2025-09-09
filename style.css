@@ -1,0 +1,452 @@
+/* =========================
+   Variables y tipografía
+   ========================= */
+:root{
+  --red:#e11d48;
+  --red-600:#dc1a44;
+  --red-700:#c4143b;
+  --black:#0f1419;
+  --white:#ffffff;
+  --muted:#667085;
+  --line:#e6e9ef;
+  --bg:#f7f8fb;
+
+  --radius:14px;
+  --shadow:0 8px 22px rgba(16,24,40,.06);
+
+  /* Colores por tipo (armonizados con la paleta) */
+  --type-apertura:#475569;
+  --type-charla:#ffccd6;
+  --type-conversatorio:#e9d5ff;
+  --type-cultural:#bbf7d0;
+  --type-reto:#fde68a;
+}
+
+html{scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--black);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3{font-family:Montserrat,Inter,sans-serif;margin:0 0 .6rem}
+h1{font-size:clamp(1.4rem, 2.4vw, 2.2rem)}
+h2{font-size:clamp(1.2rem, 2.1vw, 1.8rem)}
+h3{font-size:clamp(1.05rem, 1.6vw, 1.25rem)}
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+/* Separación vertical entre secciones de contenido */
+section.container + section.container{ margin-top:24px; }
+
+/* =========================
+   Header / Navbar
+   ========================= */
+header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(160%) blur(6px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 2px 0 rgba(0,0,0,.02);
+}
+.nav{display:flex;align-items:center;gap:12px;padding:10px 0}
+
+.brand{
+  display:flex;align-items:center;gap:10px;
+  width:100%; justify-content:center;
+}
+.brand h1{
+  margin:0; text-align:center; flex:0 0 auto;
+  font-size:clamp(1.25rem, 6vw, 1.75rem);
+  font-weight:900; letter-spacing:.3px;
+  text-transform:uppercase; line-height:1.05;
+}
+.brand h1 .impulsa{ color:var(--black); }
+.brand h1 .faceac{
+  color:var(--red);
+  text-shadow:0 1px 0 rgba(0,0,0,.10), 0 2px 6px rgba(225,29,72,.22);
+}
+
+.logo-feria,.logo-uni{
+  height:clamp(38px, 10vw, 50px);
+  width:clamp(38px, 10vw, 50px);
+  object-fit:contain; display:block;
+}
+.logo-feria{ margin-right:auto; }
+.logo-uni{   margin-left:auto;  }
+
+nav ul{display:flex;gap:16px;list-style:none;margin:0 0 0 auto;padding:0}
+nav a{
+  display:inline-block;padding:8px 12px;border-radius:10px;
+  text-decoration:none;color:var(--black);font-weight:600
+}
+nav a:hover{background:var(--line)}
+nav a.cta{background:var(--red);color:#fff}
+
+/* =========================
+   Hero
+   ========================= */
+.hero{padding:clamp(22px,5vw,40px) 0;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid; grid-template-columns:1fr; gap:16px; align-items:center; text-align:center;}
+.logo-wrap{display:flex; justify-content:center}
+.hero .logo{ width:100%; height:auto; max-width:180px; object-fit:contain; display:block; }
+
+.hero-title{
+  margin:4px 0 8px;
+  font-family:Montserrat, Inter, sans-serif;
+  font-weight:900; line-height:1.1; letter-spacing:.3px;
+  font-size:clamp(1.3rem, 6.2vw, 1.9rem);
+}
+.hero-title-accent{
+  color:var(--red); text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(0,0,0,.10), 0 2px 6px rgba(225,29,72,.22);
+}
+.hero-text{ margin:0 auto; max-width:48ch; color:var(--black); }
+
+/* Stats */
+.stats{ display:flex; justify-content:center; gap:12px; margin-top:6px; flex-wrap:wrap; }
+.stat{
+  background:#fff; border:1px solid var(--line); border-radius:12px;
+  padding:10px 14px; box-shadow:var(--shadow);
+  min-width:150px; max-width:220px; display:flex; flex-direction:column; align-items:center;
+}
+.stat .num{ font-family:Montserrat, Inter, sans-serif; font-weight:800; font-size:clamp(1.05rem, 5vw, 1.4rem); }
+.muted{color:var(--muted)}
+
+/* =========================
+   Cards / Utilities
+   ========================= */
+.card{
+  background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+  overflow:auto;
+}
+.grid{display:grid;gap:16px}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.placeholder{ display:grid; place-items:center; height:200px; border:2px dashed var(--line); color:var(--muted) }
+
+/* =========================
+   Programación — título
+   ========================= */
+#programacion > h2{
+  text-align:center;
+  font-family: Montserrat, Inter, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing:.6px;
+  margin: 8px 0 14px;
+  font-size: clamp(1.2rem, 6vw, 1.6rem);
+}
+#programacion > h2::after{
+  content:""; display:block; width:64px; height:4px;
+  margin:10px auto 0; border-radius:999px;
+  background: var(--red); box-shadow:0 6px 18px rgba(225,29,72,.35);
+}
+
+/* =========================
+   Programación: tarjetas rojas
+   ========================= */
+.schedule-vertical{ display:grid; gap:14px; }
+
+.slot-vert{
+  width:100%;
+  border:0; border-radius:18px;
+  background:linear-gradient(180deg, var(--red) 0%, var(--red-600) 60%, var(--red-700) 100%);
+  color:#fff;
+  box-shadow:0 10px 24px rgba(225,29,72,.25);
+  padding:16px 18px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center; gap:12px;
+  text-align:left; cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+.slot-vert:hover{ filter:saturate(1.08) brightness(1.02); box-shadow:0 14px 30px rgba(225,29,72,.32); }
+.slot-vert:active{ transform:scale(.98); }
+.slot-vert:focus-visible{
+  outline:3px solid rgba(255,255,255,.9);
+  outline-offset:2px;
+  box-shadow:0 0 0 3px rgba(225,29,72,.55), 0 10px 24px rgba(225,29,72,.28);
+}
+
+/* Hora grande con presencia */
+.slot-vert__time{
+  font-family:Montserrat, Inter, sans-serif;
+  font-weight:900;
+  font-size:clamp(1.4rem, 5.2vw, 2.1rem);
+  letter-spacing:.5px;
+  min-width:72px;
+  text-shadow:0 1px 0 rgba(0,0,0,.25);
+}
+
+/* Contenido centrado */
+.slot-vert__main{
+  display:flex; flex-direction:column; gap:6px;
+  align-items:center; text-align:center;
+}
+.slot-vert__title{
+  font-weight:900; color:#fff;
+  font-size:clamp(1.0rem, 3.4vw, 1.35rem);
+  line-height:1.15; text-shadow:0 1px 0 rgba(0,0,0,.22);
+}
+.slot-vert__place{
+  font-size:clamp(.95rem, 3vw, 1.15rem);
+  font-weight:700;
+  color:rgba(255,255,255,.92);
+}
+
+/* Indicador “EN CURSO” */
+.slot-vert__now{
+  justify-self:end;
+  background:#10b981; color:#fff;
+  font-size:.78rem; font-weight:900;
+  padding:4px 10px; border-radius:999px;
+  box-shadow:0 8px 20px rgba(16,185,129,.35);
+}
+.slot-vert + .slot-vert{ margin-top:2px; }
+
+/* =========================
+   Emprendimientos — grid y tarjetas vibrantes & sobrias
+   ========================= */
+#emprendimientos > h2{
+  text-align:center;
+  font-family: Montserrat, Inter, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing:.6px;
+  margin: 8px 0 14px;
+  font-size: clamp(1.2rem, 6vw, 1.6rem);
+}
+#emprendimientos > h2::after{
+  content:""; display:block; width:64px; height:4px;
+  margin:10px auto 0; border-radius:999px;
+  background: var(--red); box-shadow:0 6px 18px rgba(225,29,72,.35);
+}
+
+.grid.tiles{
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:18px;
+}
+
+/* Tarjeta con borde degradado y halo sutil */
+.tile{
+  position:relative;
+  aspect-ratio:1/1;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, rgba(225,29,72,.22), rgba(196,20,59,.18)) border-box;
+  border:1px solid transparent;
+  border-radius:18px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:12px;
+  padding:12px; /* menos padding para ganar área útil */
+  cursor:pointer; touch-action:manipulation;
+  transition:transform .14s ease, box-shadow .14s ease, filter .14s ease;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+/* Halo discreto al hover */
+.tile::after{
+  content:"";
+  position:absolute; inset:auto -30% -30% auto;
+  width:60%; height:60%;
+  background:radial-gradient(42% 42% at 70% 70%, rgba(225,29,72,.14), transparent 60%);
+  pointer-events:none;
+  transition:opacity .14s ease, transform .14s ease;
+  opacity:.0; transform:translate3d(0,4px,0) scale(.98);
+}
+.tile:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 34px rgba(225,29,72,.15), 0 10px 26px rgba(16,24,40,.10);
+  filter:saturate(1.03);
+}
+.tile:hover::after{ opacity:1; transform:none; }
+.tile:focus-visible{
+  outline:3px solid rgba(225,29,72,.22);
+  outline-offset:3px;
+  box-shadow:0 0 0 3px rgba(225,29,72,.08), 0 12px 28px rgba(16,24,40,.12);
+}
+
+/* =========================
+   Logo dentro de la tarjeta
+   (aprovecha más espacio + modificadores por forma)
+   ========================= */
+.tile{
+  --logo-max-w: 96%;
+  --logo-max-h: 86%;
+  --logo-pad: 6px;
+  --logo-radius: 12px;
+}
+
+/* Fallback general (sin clasificar) */
+.tile img{
+  display:block;
+  width:auto; height:auto;
+  max-width:var(--logo-max-w);
+  max-height:var(--logo-max-h);
+  object-fit:contain; object-position:center;
+  -webkit-user-drag:none;
+  background:#fff;
+  border-radius:var(--logo-radius);
+  box-shadow:inset 0 1px 0 rgba(0,0,0,.03);
+  padding:var(--logo-pad);
+  transition:transform .14s ease;
+}
+.tile:hover img{ transform:scale(1.01); }
+
+/* Modificadores opcionales */
+.tile.is-wide{   --logo-max-w: 98%; --logo-max-h: 80%; --logo-pad: 6px; }
+.tile.is-tall{   --logo-max-w: 88%; --logo-max-h: 94%; --logo-pad: 6px; }
+.tile.is-square{ --logo-max-w: 94%; --logo-max-h: 94%; --logo-pad: 6px; }
+
+/* Fallback de avatar si no hay logo */
+.tile .avatar{
+  display:grid; place-items:center;
+  width:var(--logo-max-w); min-height:110px;
+  border-radius:var(--logo-radius);
+  background:#fff;
+  border:1px dashed #e9ecf2;
+  color:var(--red-700);
+  font-weight:900;
+  font-family:Montserrat, Inter, sans-serif;
+  font-size:1.15rem;
+}
+
+/* Meta opcional */
+.tile__name{
+  font-weight:800;
+  font-size:clamp(.95rem, 3.2vw, 1.12rem);
+  color:#0f1419;
+  text-align:center;
+  letter-spacing:.2px;
+}
+.tile__name::after{
+  content:"";
+  display:block;
+  width:28px; height:3px; margin:8px auto 0;
+  border-radius:999px;
+  background:linear-gradient(90deg, rgba(225,29,72,.38), rgba(220,26,68,.28));
+}
+.tile__sector{
+  display:inline-block;
+  background:linear-gradient(180deg, rgba(225,29,72,.10), rgba(225,29,72,.06));
+  color:var(--red-700);
+  font-weight:700; font-size:.78rem;
+  padding:4px 10px; border-radius:999px;
+  border:1px solid rgba(225,29,72,.18);
+}
+
+/* Aire bajo el grid de logos */
+#ventureGrid{ margin-bottom:16px; }
+
+/* =========================
+   Títulos de otras secciones (mismo estilo)
+   ========================= */
+#graficos > h2,
+#datos > h2,
+#contacto > h2,
+#contacto-organizacion > h2{
+  text-align:center;
+  font-family: Montserrat, Inter, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing:.6px;
+  margin: 8px 0 14px;
+  font-size: clamp(1.2rem, 6vw, 1.6rem);
+}
+#graficos > h2::after,
+#datos > h2::after,
+#contacto > h2::after,
+#contacto-organizacion > h2::after{
+  content:""; display:block; width:64px; height:4px;
+  margin:10px auto 0; border-radius:999px;
+  background: var(--red); box-shadow:0 6px 18px rgba(225,29,72,.35);
+}
+
+/* =========================
+   Modal
+   ========================= */
+.modal{ position:fixed; inset:0; background:rgba(0,0,0,.4);
+  display:none; align-items:center; justify-content:center; padding:16px; z-index:1000; }
+.modal[aria-hidden="false"]{display:flex}
+.modal__dialog{
+  background:#fff;border-radius:16px;width:100%;max-width:520px;
+  border:1px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.18);padding:18px;position:relative;
+}
+.modal__close{ position:absolute; right:18px; top:14px; border:none; background:#f2f4f7;
+  border-radius:10px; padding:6px 10px; cursor:pointer; font-size:16px; }
+.modal__header{display:flex;align-items:center;gap:12px;margin-top:6px}
+.modal__logo{height:56px;width:auto}
+.modal__body{margin-top:8px}
+
+/* =========================
+   Footer (centrado y limpio)
+   ========================= */
+footer{
+  background:#0b0e12;
+  color:#cbd5e1;
+  margin-top:30px;
+  padding:28px 0;
+  text-align:center;
+  position:relative;
+}
+footer a{color:#fff}
+
+/* línea superior muy sutil con la paleta */
+footer::before{
+  content:"";
+  position:absolute; inset:0 0 auto 0;
+  height:2px;
+  background:linear-gradient(90deg, rgba(225,29,72,.28), rgba(225,29,72,.06));
+  opacity:.9;
+}
+
+.foot-flex{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:120px;
+}
+
+.foot-flex > div{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+
+.logo-footer{
+  height:40px;
+  width:auto;
+  opacity:.95;
+  transition:transform .12s ease, opacity .12s ease;
+}
+.logo-footer:hover{ transform:translateY(-1px); opacity:1; }
+
+/* =========================
+   Responsive
+   ========================= */
+@media (min-width:768px){
+  .brand h1{ font-size:clamp(1.6rem, 3.6vw, 2.2rem); letter-spacing:.4px; }
+  .logo-feria,.logo-uni{ height:clamp(48px, 6vw, 64px); width:clamp(48px, 6vw, 64px); }
+  .grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
+  .grid.tiles{grid-template-columns:repeat(auto-fill, minmax(220px, 1fr))}
+  .foot-flex{flex-direction:column;gap:12px;text-align:center}
+}
+@media (min-width:1024px){
+  .brand h1{ font-size:clamp(1.8rem, 2.8vw, 2.6rem); letter-spacing:.5px; }
+  .logo-feria,.logo-uni{ height:clamp(56px, 7vw, 80px); width:clamp(56px, 7vw, 80px); }
+}
+/* Muy pequeñas */
+@media (max-width:560px){
+  nav ul{display:none}
+  .grid.tiles{grid-template-columns:repeat(2,1fr)}
+  .hero .logo{max-width:clamp(160px,46vw,300px)}
+}
