@@ -82,7 +82,7 @@
     <div class="grid tiles" id="ventureGrid"></div>
   </section>
   <!--
- <section id="mapa" class="container">
+  <section id="mapa" class="container">
     <h2>Mapa de la feria</h2>
     <div class="card">
       <img src="mapa-feria.png" alt="Mapa de la feria" style="max-width:100%; border-radius:12px;">
@@ -92,11 +92,32 @@
 
   <section id="graficos" class="container">
     <h2>Gráficos y Datos</h2>
-    <div class="grid cols-2">
-      <div class="card placeholder">Gráfico: Emprendimientos por sector</div>
-      <div class="card placeholder">Gráfico: Canales de contacto más usados</div>
+    <div class="card">
+      <div class="embed-wrap">
+        <iframe
+          title="GRAFICAS EMPRENDEDORES 2.0"
+          src="https://app.powerbi.com/view?r=eyJrIjoiNGViMTc4ZTUtOGRiYS00YTM3LWEyOGItNWVlMzg2N2RlYTVkIiwidCI6IjZjYTM0YWUxLTQ2NmYtNDRiYy1hN2FhLTBhYzVhNzhjNjFiMSIsImMiOjR9"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
   </section>
+
+  <section id="patrocinadores" class="container">
+  <h2>Patrocinadores</h2>
+  <div class="card">
+    <div class="sponsor-carousel" aria-roledescription="carrusel" aria-label="Patrocinadores">
+      <button class="sp-btn prev" id="spPrev" aria-label="Anterior">‹</button>
+      <div class="sp-track" id="sponsorTrack">
+        <!-- Se rellena por JS -->
+      </div>
+      <button class="sp-btn next" id="spNext" aria-label="Siguiente">›</button>
+    </div>
+    <div class="sp-dots" id="sponsorDots" aria-hidden="true"></div>
+  </div>
+</section>
+
 
   <section id="contacto" class="container">
     <h2>Contacto de la organización</h2>
@@ -104,7 +125,7 @@
       <div class="card">
         <h3>Escríbenos</h3>
         <ul>
-          <li><strong>Instagram:</strong> <a href="https://instagram.com/impulsafaceac">@impulsafaceac</a></li>
+          <strong>Instagram:</strong> <a href="https://instagram.com/impulsafaceac" target="_blank" rel="noopener">@impulsafaceac</a>
         </ul>
       </div>
       <div class="card">

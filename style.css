@@ -125,7 +125,6 @@ nav a.cta{background:var(--red);color:#fff}
   border-radius:var(--radius);
   padding:16px;
   box-shadow:var(--shadow);
-
   /* Evitar barras internas */
   overflow:hidden;
 }
@@ -139,8 +138,10 @@ nav a.cta{background:var(--red);color:#fff}
 }
 
 .grid{display:grid;gap:16px}
-.grid.cols-3{grid-template-columns:repeat(3,1fr)}
-.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+/* Por defecto, 1 columna en layouts utilitarios */
+.grid.cols-3,
+.grid.cols-2{grid-template-columns:1fr}
+
 .placeholder{ display:grid; place-items:center; height:200px; border:2px dashed var(--line); color:var(--muted) }
 
 /* =========================
@@ -257,7 +258,7 @@ nav a.cta{background:var(--red);color:#fff}
   border-radius:18px;
   display:flex; flex-direction:column;
   align-items:center; justify-content:center; gap:12px;
-  padding:12px; /* menos padding para ganar área útil */
+  padding:12px;
   cursor:pointer; touch-action:manipulation;
   transition:transform .14s ease, box-shadow .14s ease, filter .14s ease;
   box-shadow:var(--shadow);
@@ -288,7 +289,6 @@ nav a.cta{background:var(--red);color:#fff}
 
 /* =========================
    Logo dentro de la tarjeta
-   (aprovecha más espacio + modificadores por forma)
    ========================= */
 .tile{
   --logo-max-w: 96%;
@@ -383,6 +383,42 @@ nav a.cta{background:var(--red);color:#fff}
 }
 
 /* =========================
+   Gráficos (Power BI) — responsive real
+   ========================= */
+#graficos .card{ padding:0; }              /* sin acolchado extra */
+.embed-wrap{
+  position:relative;
+  width:100%;
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:#fff;
+  box-shadow:var(--shadow);
+
+  /* relación de aspecto controlada por variable */
+  --pbi-ratio:56.25%;                      /* 16:9 por defecto (desktop) */
+}
+.embed-wrap::before{
+  content:"";
+  display:block;
+  padding-top:var(--pbi-ratio);            /* fallback para navegadores sin aspect-ratio */
+}
+.embed-wrap > iframe{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  border:0; display:block;
+  touch-action:pan-y;                      /* gestos cómodos en móvil */
+}
+
+/* Más alto en pantallas medianas */
+@media (max-width:1024px){
+  .embed-wrap{ --pbi-ratio:75%; }          /* ~4:3 */
+}
+/* Aún más alto en teléfonos */
+@media (max-width:640px){
+  .embed-wrap{ --pbi-ratio:130%; }         /* cercano a 3:4 */
+}
+
+/* =========================
    Modal
    ========================= */
 .modal{ position:fixed; inset:0; background:rgba(0,0,0,.4);
@@ -410,8 +446,6 @@ footer{
   position:relative;
 }
 footer a{color:#fff}
-
-/* línea superior muy sutil con la paleta */
 footer::before{
   content:"";
   position:absolute; inset:0 0 auto 0;
@@ -419,7 +453,6 @@ footer::before{
   background:linear-gradient(90deg, rgba(225,29,72,.28), rgba(225,29,72,.06));
   opacity:.9;
 }
-
 .foot-flex{
   display:flex;
   flex-direction:column;
@@ -428,14 +461,12 @@ footer::before{
   gap:10px;
   min-height:120px;
 }
-
 .foot-flex > div{
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:6px;
 }
-
 .logo-footer{
   height:40px;
   width:auto;
@@ -450,7 +481,11 @@ footer::before{
 @media (min-width:768px){
   .brand h1{ font-size:clamp(1.6rem, 3.6vw, 2.2rem); letter-spacing:.4px; }
   .logo-feria,.logo-uni{ height:clamp(48px, 6vw, 64px); width:clamp(48px, 6vw, 64px); }
-  .grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
+
+  /* a partir de 768px, 2 y 3 columnas reales */
+  .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+
   .grid.tiles{grid-template-columns:repeat(auto-fill, minmax(220px, 1fr))}
   .foot-flex{flex-direction:column;gap:12px;text-align:center}
 }
@@ -463,4 +498,113 @@ footer::before{
   nav ul{display:none}
   .grid.tiles{grid-template-columns:repeat(2,1fr)}
   .hero .logo{max-width:clamp(160px,46vw,300px)}
+}
+
+/* Título igual a las demás secciones */
+#patrocinadores > h2{
+  text-align:center;
+  font-family: Montserrat, Inter, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing:.6px;
+  margin: 8px 0 14px;
+  font-size: clamp(1.2rem, 6vw, 1.6rem);
+}
+#patrocinadores > h2::after{
+  content:""; display:block; width:64px; height:4px;
+  margin:10px auto 0; border-radius:999px;
+  background: var(--red); box-shadow:0 6px 18px rgba(225,29,72,.35);
+}
+
+/* Carrusel de patrocinadores (1 logo por slide + auto-fit) */
+.sponsor-carousel{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  overflow:hidden; /* evita barra horizontal */
+}
+
+.sp-track{
+  display:flex;
+  width:100%;
+  transition:transform .35s ease;
+}
+
+.sp-slide{
+  flex:0 0 100%;
+  display:grid;
+  grid-template-columns: 1fr;     /* un logo por slide */
+  align-items:center;
+  gap:0;
+  padding:8px 4px;
+}
+
+.sp-item{
+  display:grid;
+  place-items:center;             /* centra el logo */
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding: clamp(8px, 2vw, 16px);
+  height: clamp(150px, 36vw, 220px);
+  box-shadow:var(--shadow);
+}
+
+.sp-item:focus-visible{
+  outline:3px solid rgba(225,29,72,.25);
+  outline-offset:3px;
+}
+
+/* El logo se escala para ocupar la tarjeta sin deformarse ni recortarse */
+.sp-logo{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center;
+}
+
+/* Botones */
+.sp-btn{
+  position:absolute;
+  top:50%; transform:translateY(-50%);
+  width:36px; height:36px;
+  border:none; border-radius:999px;
+  background:rgba(15,20,25,.06);
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.sp-btn:hover{ background:rgba(15,20,25,.10); }
+.sp-btn:focus-visible{ outline:3px solid rgba(225,29,72,.4); }
+.sp-btn.prev{ left:8px; }
+.sp-btn.next{ right:8px; }
+
+/* Indicadores */
+.sp-dots{
+  display:flex; justify-content:center; gap:6px;
+  margin-top:10px;
+}
+.sp-dot{
+  width:8px; height:8px; border:none;
+  border-radius:999px; background:#e5e7eb; cursor:pointer;
+}
+.sp-dot.is-active{ background:var(--red); }
+
+/* Mensaje vacío */
+.sp-empty{
+  width:100%;
+  text-align:center;
+  color:var(--muted);
+  padding:18px 8px;
+}
+
+/* Móvil: tarjetas un poco más altas para logos apaisados */
+@media (max-width:560px){
+  .sp-item{
+    height: clamp(180px, 56vw, 260px);
+    padding: clamp(6px, 3vw, 12px);
+  }
 }

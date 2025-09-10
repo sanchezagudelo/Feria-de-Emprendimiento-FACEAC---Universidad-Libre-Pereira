@@ -40,6 +40,17 @@ const EMPRENDIMIENTOS = [
   {emprendedor:"Ana Maria Rincón", nombre:"Toque de Dulzura", sector:"Alimentación", contacto:"3024141206", logo: "logos/cookiss.jpg"}
 ];
 
+// ===============================
+// Patrocinadores (datos)
+// ===============================
+const SPONSORS = [
+  { nombre: "Aservi de Colombia", logo: "patrocinadores/asservi.jpeg", url: "https://www.instagram.com/asservisas/" },
+  { nombre: "Fundeagro", logo: "patrocinadores/fundeagro.png", url: "https://www.fundeagro.org/es/" },
+  { nombre: "Multintegral", logo: "patrocinadores/multintegral.png", url: "https://multintegral.com/" },
+  { nombre: "Postobon", logo: "patrocinadores/postobon.png", url: "https://www.postobon.com/" },
+  { nombre: "Integro", logo: "patrocinadores/integro.png", url: "https://www.igc.com.co/" }
+];
+
 // =========
 // Helpers
 // =========
@@ -47,33 +58,29 @@ const $ = (q,el=document) => el.querySelector(q);
 function initials(str){
   return (str||'').split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0].toUpperCase()).join('');
 }
-
-// "HH:MM" → minutos
 const toMin = (hhmm="00:00") => {
   const [h,m] = hhmm.split(":").map(n=>parseInt(n,10)||0);
   return h*60 + m;
 };
-
-// Devuelve el índice del evento en curso (entre su inicio y el del siguiente)
 function computeNowIndex(list){
   const now = new Date();
   const cur = now.getHours()*60 + now.getMinutes();
   for (let i=0;i<list.length;i++){
     const start = toMin(list[i].time);
-    const end   = i < list.length-1 ? toMin(list[i+1].time) : start + 60; // aprox 1h si es el último
+    const end   = i < list.length-1 ? toMin(list[i+1].time) : start + 60;
     if (cur >= start && cur < end) return i;
   }
   return -1;
 }
 
 // ==========================================
-// Programación — tarjetas MINIMAL (hora grande + título + lugar)
+// Programación — tarjetas MINIMAL
 // ==========================================
 function renderScheduleSlots(){
   const grid = document.getElementById('scheduleGrid');
   if (!grid) return;
 
-  grid.className = 'schedule-vertical';
+  grid.classList.add('schedule-vertical');
   grid.innerHTML = '';
 
   const nowIdx = computeNowIndex(PROGRAMACION);
@@ -82,10 +89,7 @@ function renderScheduleSlots(){
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'slot-vert';
-    btn.setAttribute(
-      'aria-label',
-      `Ver detalle de ${it.title || it.entity || it.speaker || 'actividad'} a las ${it.time}`
-    );
+    btn.setAttribute('aria-label', `Ver detalle de ${it.title || it.entity || it.speaker || 'actividad'} a las ${it.time}`);
 
     const title = it.title || 'Actividad';
     const place = it.place || '—';
@@ -184,10 +188,147 @@ vmClose && vmClose.addEventListener('click', closeVentureModal);
 modal && modal.addEventListener('click', (e)=>{ if(e.target === modal) closeVentureModal(); });
 document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && modal && modal.getAttribute('aria-hidden')==='false') closeVentureModal(); });
 
+// ==========================================
+// Patrocinadores — carrusel (1 logo por slide)
+// ==========================================
+(function initSponsors(){
+  const track   = document.getElementById('sponsorTrack');
+  const dots    = document.getElementById('sponsorDots');
+  const prevBtn = document.getElementById('spPrev');
+  const nextBtn = document.getElementById('spNext');
+
+  if (!track) return;
+
+  let idx = 0;
+  let slides = [];
+  let timer = null;
+
+  // ← Aquí el cambio: siempre 1 por vista
+  const perView = () => 1;
+  let pv = perView();
+
+  const chunk = (arr, size) => {
+    const out = [];
+    for (let i=0;i<arr.length;i+=size) out.push(arr.slice(i,i+size));
+    return out;
+  };
+
+  const stop = ()=> { if (timer){ clearInterval(timer); timer = null; } };
+  const start = ()=> {
+    stop();
+    if (slides.length <= 1) return;
+    timer = setInterval(()=> go(idx+1), 3600);
+  };
+
+  function build(){
+    stop();
+    idx = 0;
+    pv = perView();
+    track.innerHTML = '';
+    if (dots) dots.innerHTML = '';
+
+    if (!SPONSORS || SPONSORS.length === 0){
+      const empty = document.createElement('div');
+      empty.className = 'sp-empty';
+      empty.textContent = 'Pronto anunciaremos los patrocinadores';
+      track.appendChild(empty);
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
+      if (dots)    dots.style.display    = 'none';
+      return;
+    }
+
+    slides = chunk(SPONSORS, pv);
+
+    slides.forEach(group=>{
+      const slide = document.createElement('div');
+      slide.className = 'sp-slide';
+      slide.style.setProperty('--pv', pv);
+      group.forEach(s=>{
+        const a = document.createElement('a');
+        a.className = 'sp-item';
+        if (s.url){ a.href = s.url; a.target='_blank'; a.rel='noopener'; }
+        a.setAttribute('aria-label', s.nombre || 'Patrocinador');
+        const img = document.createElement('img');
+        img.className = 'sp-logo';
+        img.src = s.logo;
+        img.alt = s.nombre || 'Patrocinador';
+        img.loading = 'lazy';
+        a.appendChild(img);
+        slide.appendChild(a);
+      });
+      track.appendChild(slide);
+    });
+
+    if (dots){
+      dots.style.display = '';
+      slides.forEach((_,i)=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'sp-dot';
+        b.setAttribute('aria-label', `Ir al slide ${i+1}`);
+        b.addEventListener('click', ()=> go(i));
+        dots.appendChild(b);
+      });
+    }
+
+    if (prevBtn){ prevBtn.style.display=''; prevBtn.onclick = ()=> go(idx-1); }
+    if (nextBtn){ nextBtn.style.display=''; nextBtn.onclick = ()=> go(idx+1); }
+
+    // swipe
+    let startX = 0;
+    track.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend',   e=>{
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) go(idx + (dx<0?1:-1));
+    }, {passive:true});
+
+    update();
+    start();
+
+    const container = track.closest('.sponsor-carousel');
+    if (container){
+      container.addEventListener('mouseenter', stop);
+      container.addEventListener('mouseleave', start);
+      container.addEventListener('focusin',  stop);
+      container.addEventListener('focusout', start);
+    }
+  }
+
+  function go(i){
+    if (!slides.length) return;
+    idx = (i + slides.length) % slides.length;
+    update();
+  }
+
+  function update(){
+    track.style.transform = `translateX(-${idx*100}%)`;
+    if (dots){
+      dots.querySelectorAll('.sp-dot').forEach((d,i)=> d.classList.toggle('is-active', i===idx));
+    }
+    const show = slides.length > 1;
+    if (prevBtn) prevBtn.style.display = show ? '' : 'none';
+    if (nextBtn) nextBtn.style.display = show ? '' : 'none';
+    if (dots)    dots.style.display    = show ? '' : 'none';
+  }
+
+  // Inicial
+  build();
+
+  // Mantengo el listener por si luego vuelves a hacerlo responsivo
+  let lastPV = pv;
+  const onResize = () => {
+    const cur = perView();
+    if (cur !== lastPV){ lastPV = cur; build(); }
+  };
+  window.addEventListener('resize', onResize);
+})();
+
 // ===============
 // Inicialización
 // ===============
-renderScheduleSlots();  // vista vertical minimal + EN CURSO
+renderScheduleSlots();
 renderVentures();
+
 $('#statEmps') && ($('#statEmps').textContent = EMPRENDIMIENTOS.length);
 $('#statActs') && ($('#statActs').textContent = PROGRAMACION.length);
