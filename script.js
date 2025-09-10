@@ -10,10 +10,12 @@ const PROGRAMACION = [
   {time:"13:00", title:"Receso", speaker:"IMPULSA FACEAC", type:"Receso", place: "Universidad Libre Seccional Pereira"},
   {time:"14:00", title:"Marketing y Redes Sociales", entity:"Lina Gómez", type:"Charla", place:"Auditorio Benjamín Herrera"},
   {time:"15:00", title:"Impulsando Valor Con Sistemas De Calidad", entity:"SENA", type:"Charla", place:"Auditorio Benjamín Herrera"},
-  {time:"16:15", title:"Fondo Emprender", entity:"SENA", type:"Charla", place:"Auditorio Benjamín Herrera"},
-  {time:"16:55", title:"Liderazgo y Bienestar — Cuidarse", speaker:"Daniel Zapata", type:"Charla", place:"Auditorio Benjamín Herrera"},
-  {time:"17:00", title:"Crédito Estratégico: Financia tu Futuro", speaker:"Fondo de Garantías del Café - Valentina Ariza", type:"Conversatorio", place:"Auditorio Benjamín Herrera"},
-  {time:"19:00", title:"Reto Empresarial", entity:"Equipo Impulsa FACEAC", type:"Reto", place:"Auditorio Benjamín Herrera"}
+  {time:"16:00", title:"Fondo Emprender", entity:"SENA", type:"Charla", place:"Auditorio Benjamín Herrera"},
+  {time:"17:00", title:"Liderazgo y Bienestar — Cuidarse", speaker:"Daniel Zapata", type:"Charla", place:"Auditorio Benjamín Herrera"},
+  {time:"17:00", title:"Crédito Estratégico: Financia tu Futuro", speaker:"Fondo de Garantías del Café - Valentina Ariza", type:"Conversatorio", place:"Bloque B - Salon 501"},
+  {time:"18:00", title:"Musica en Vivo y Bailes", speaker:"Bienestar Universitario", type:"Cultural", place:"Auditorio Benjamín Herrera"},
+  {time:"18:30", title:"Visión Empresa", entity:"Automotores Andina - Juan Manuel Restrepo", type:"Charla", place:"Auditorio Benjamín Herrera"},
+  {time:"19:15", title:"Reto Empresarial", entity:"Equipo Impulsa FACEAC", type:"Reto", place:"Auditorio Benjamín Herrera"}
 ];
 
 // =====================================
