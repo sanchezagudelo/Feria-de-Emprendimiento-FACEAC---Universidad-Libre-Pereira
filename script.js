@@ -317,7 +317,7 @@ document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && modal && mo
   // Inicial
   build();
 
-  // Mantengo el listener por si luego vuelves a hacerlo responsivo
+  // Listener por si se hace responsivo
   let lastPV = pv;
   const onResize = () => {
     const cur = perView();
